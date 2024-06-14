@@ -188,6 +188,5 @@
 	</section>
 	{#if isSearching}
 	<button on:click={()=>handleResetSearch()} class="absolute z-40 inset-0 bg-[rgba(0,0,0,0.7)]" />
-
 	{/if}
 </header>
