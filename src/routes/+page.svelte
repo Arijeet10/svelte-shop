@@ -1,4 +1,5 @@
 <script lang="ts">
+	import FeaturedProducts from '$lib/components/FeaturedProducts.svelte';
 	import HeroSection from '$lib/components/HeroSection.svelte';
 </script>
 
@@ -7,6 +8,9 @@
 		<HeroSection />
 	</div>
 
+	<div class="">
+		<FeaturedProducts />
+	</div>
 </main>
 
 
