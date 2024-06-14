@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ChevronDown, ChevronUp, Search, ShoppingCart, X } from 'lucide-svelte';
 	import { page } from '$app/stores';
-	import { categories, type Product } from '../../stores/store';
+	import { categories,cart, type Product } from '../../stores/store';
 	import { fetchCategories, fetchProducts } from '$lib/api';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
@@ -171,9 +171,16 @@
 				href="/cart"
 				class={`p-2 flex items-center gap-1 ${url == '/cart' ? 'text-[#000000]' : ''} hover:text-[#000000]`}
 			>
-				<div class="">
-					<ShoppingCart />
+			<div class="relative">
+				<div
+					class={`${$cart.length == 0 ? 'hidden' : 'absolute'} p-1 w-3 h-3 -top-1 right-0 rounded-full flex items-center justify-center bg-orange2 text-[#FEFEFE]`}
+				>
+					<div class="w-auto h-auto text-xs font-medium">
+						{$cart.length}
+					</div>
 				</div>
+				<ShoppingCart />
+			</div>
 				<div class="sm:hidden md:block">Cart</div>
 			</a>
 		</nav>
