@@ -5,6 +5,7 @@
 	import { ChevronLeft, ChevronRight } from 'lucide-svelte';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
+  import Loading2 from './Loading2.svelte';
 
 	let heroProducts: Product[] = [];
 	let activeProduct: number = 0;
@@ -36,6 +37,7 @@
 		try {
 			loading=true
 			heroProducts = await fetchHeroProducts();
+			toasts.success('Hero Products fetched')
 		} catch (error) {
 			toasts.error('Failed to load data');
 			console.error('Error fetching hero products:', error);
@@ -50,7 +52,7 @@
 
 
 {#if loading}
-<div>Loading...</div>
+<Loading2 />
 {:else}
 <div class="h-full w-full relative grid gap-2">
 	{#each heroProducts as product, i}
@@ -67,7 +69,7 @@
 					<div>
 						<button
 							on:click={() => goto(`product/${product.id}`)}
-							class="p-2 rounded-md font-medium bg-orange hover:bg-orange2">Shop Now</button
+							class="p-2 rounded-md font-medium bg-orange hover:bg-orange2  transition-colors duration-300 ease-in-out">Shop Now</button
 						>
 					</div>
 				</div>

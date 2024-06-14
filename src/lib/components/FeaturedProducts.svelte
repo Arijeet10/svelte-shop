@@ -4,6 +4,7 @@
 	import { toasts } from 'svelte-toasts';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
+  import Loading2 from './Loading2.svelte';
 
 	let featuredProducts: Product[] = [];
 	let loading = true;
@@ -26,8 +27,10 @@
 </script>
 
 {#if loading}
-<div>Loading...</div>
-
+<div class="flex flex-col sm:flex-row gap-4 sm:gap-0 max-w-screen overflow-hidden">
+	<div class="flex-1  sm:min-h-[60vh]"><Loading2 /></div>
+	<div class="flex-1  sm:min-h-[60vh]"><Loading2 /></div>
+  </div>
 {:else}
 	<div class="flex flex-col gap-4">
 		<div class="text-3xl font-bold text-black">Featured</div>
@@ -35,7 +38,7 @@
 			{#each featuredProducts as product}
 				<button
 					on:click={() => goto(`/product/${product.id}`)}
-					class="relative w-full h-[60vh] border shadown-md"
+					class="relative w-full h-[60vh] border shadown-md "
 				>
 					<img src={product.image} alt="" class="w-full h-full object-contain" />
 					<div class="absolute inset-0 bg-gradient-to-b from-transparent to-black" />

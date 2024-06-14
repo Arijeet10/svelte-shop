@@ -39,7 +39,7 @@
     >
     <p class="text-grey font-medium">${product.price}</p>
     <button
-      class="px-4 py-2 mt-2 rounded-md font-medium bg-orange hover:bg-orange2 text-white"
+      class="px-4 py-2 mt-2 rounded-md font-medium bg-orange hover:bg-orange2 text-white transition-colors duration-300 ease-in-out"
       on:click={() => addToCart(product)}>Add to Cart</button
     >
   </div>

@@ -128,8 +128,8 @@
 	{#if filteredProducts.length > itemsPerPage}
 		<div class="my-6 flex items-center justify-end ">
 			<div class="flex items-center gap-4">
-				<button on:click={handlePreviousPage} class="w-[10vw] px-2 py-2 font-medium rounded-md bg-black hover:bg-orange2 text-[#FEFEFE]" disabled={currentPage === 1}>Previous</button>
-				<button on:click={handleNextPage} class="w-[10vw] px-2 py-2 font-medium rounded-md bg-black hover:bg-orange2 text-[#FEFEFE]" disabled={currentPage >= Math.ceil(filteredProducts.length / itemsPerPage)}>Next</button>
+				<button on:click={handlePreviousPage} class="w-[10vw] px-2 py-2 font-medium rounded-md bg-black hover:bg-orange2 text-[#FEFEFE] transition-colors duration-300 ease-in-out" disabled={currentPage === 1}>Previous</button>
+				<button on:click={handleNextPage} class="w-[10vw] px-2 py-2 font-medium rounded-md bg-black hover:bg-orange2 text-[#FEFEFE] transition-colors duration-300 ease-in-out" disabled={currentPage >= Math.ceil(filteredProducts.length / itemsPerPage)}>Next</button>
 			</div>
 		</div>
 	{/if}
