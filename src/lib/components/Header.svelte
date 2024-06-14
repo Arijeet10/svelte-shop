@@ -1,25 +1,55 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import { ChevronDown, ChevronUp, Search, ShoppingCart, X } from 'lucide-svelte';
-    import {onMount} from "svelte";
-    import {goto} from "$app/navigation"
-    import {categories} from "../../stores/store"
-    import {fetchCategories} from "$lib/api"
+	import { page } from '$app/stores';
+	import { categories, type Product } from '../../stores/store';
+	import { fetchCategories, fetchProducts } from '$lib/api';
+	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
+	import { writable } from 'svelte/store';
+	import { debounce } from 'lodash-es';
 
-    let dropdown = false;
-    let url;
+	let searchResults = writable<Product[]>([]);
+	let searchInput = writable('');
+	let dropdown = false;
+	let url;
+	let isSearching = false;
+
 	$: url = $page.url.pathname;
 
-    
+	const handleResetSearch=()=>{
+		searchInput.set("");
+		searchResults.set([]);
+		isSearching=false;
+	}
 
+	const handleSearch = debounce(async () => {
+		isSearching = $searchInput.trim() !== '';
+		if (!isSearching) {
+			searchResults.set([]);
+			return;
+		}
 
-    //load product categories
-    onMount(async () => {
+		try {
+			const productList: Product[] = await fetchProducts();
+			const results = productList.filter((item) => {
+				const titleWords = item.title.split(' ');
+				if (titleWords.length === 1) {
+					return item.title.toLowerCase().includes($searchInput.toLowerCase());
+				}
+				return titleWords.some((word) => word.toLowerCase().includes($searchInput.toLowerCase()));
+			});
+			searchResults.set(results);
+		} catch (error) {
+			console.log('Error in search:',error);
+		}
+	}, 300); // 300ms debounce delay
+
+	onMount(async () => {
 		try {
 			const categoryList: string[] = await fetchCategories();
 			categories.update((items) => [...items, ...categoryList]);
 		} catch (error) {
-			console.log('Failed to load product categories:',error);
+			console.log('Failed to load products or categories:',error);
 		}
 	});
 
@@ -29,10 +59,16 @@
 			dropdown = !dropdown;
 		}
 	}
-
 </script>
 
-
+<style>
+	.search-container {
+		width: 30vw;
+	}
+	.search-container.active {
+		width: 60vw;
+	}
+</style>
 
 <header class="px-8 py-2 flex items-center justify-between">
 	<!--Logo-->
@@ -42,7 +78,7 @@
 	<section class="hidden sm:flex items-center">
 		<nav class="flex items-center gap-4 font-medium text-[#6C7275]">
 			<a href="/" class={`p-2 ${url == '/' ? 'text-[#000000]' : ''} hover:text-[#000000]`}>Home</a>
-            <div class="relative">
+			<div class="relative">
 				<button
 					type="button"
 					on:click={() => (dropdown = !dropdown)}
@@ -78,6 +114,7 @@
 					</div>
 				{/if}
 			</div>
+
 			<a href="/about" class={`p-2 ${url == '/about' ? 'text-[#000000]' : ''} hover:text-[#000000]`}>About</a>
 			<a href="/contact" class={`p-2 ${url == '/contact' ? 'text-[#000000]' : ''} hover:text-[#000000]`}>Contact</a>
 			<a href="/blog" class={`p-2 ${url == '/blog' ? 'text-[#000000]' : ''} hover:text-[#000000]`}>Blog</a>
@@ -87,17 +124,40 @@
 
 	<section class="hidden sm:flex items-center gap-4">
 		<!--Product Search-->
-		<div>
-			<div class={`p-2 flex items-center border  rounded-md`}>
+		<div class={` ${isSearching ? 'absolute w-[60vw] top-2 left-2/4 translate-x-[-50%] z-50 bg-[#FEFEFE]':'relative'} transition-all duration-300 ease-in-out`}>
+			<div class={`p-2 flex items-center ${isSearching?'border':'lg:border'}  rounded-md`}>
 				<input
 					type="text"
 					placeholder="Search Products"
-					class={`w-full focus:outline-none bg-transparent`}
+					class={`w-full focus:outline-none bg-transparent ${isSearching?'block':'sm:hidden lg:block'} `}
+					bind:value={$searchInput}
+					on:input={handleSearch}
 				/>
-				<button>
-					<Search />
+				{#if $searchInput.trim()!==''}
+				<button on:click={()=>handleResetSearch()}>
+					<X />
 				</button>
+				{:else}
+				<button on:click={()=>isSearching=true}>
+					<Search />
+
+				</button>
+				{/if}
 			</div>
+			{#if $searchInput.trim() !== ''}
+				<div class="absolute w-full max-h-[50vh] z-50 top-full p-2 border-x border-b rounded-b-md overflow-scroll hide-default-scrollbar flex flex-col gap-4 bg-[#FEFEFE]">
+					{#each $searchResults as product}
+					<button on:click={() => { goto(`/product/${product.id}`); handleResetSearch() }} class="flex items-center gap-2">
+						<div class="min-w-20">
+								<img src={product.image} alt="" class="w-20 h-20 object-contain" />
+							</div>
+							<div class="">
+								{product.title}
+							</div>
+						</button>
+					{/each}
+				</div>
+			{/if}
 		</div>
 		<!--/Product Search-->
 
@@ -115,5 +175,8 @@
 		</nav>
 		<!--/Cart-->
 	</section>
+	{#if isSearching}
+	<button on:click={()=>handleResetSearch()} class="absolute z-40 inset-0 bg-[rgba(0,0,0,0.7)]" />
 
+	{/if}
 </header>
