@@ -21,7 +21,7 @@
   }
 </script>
 
-<div class="p-4 h-[50vh] border rounded-md overflow-hidden flex flex-col">
+<div class="p-4 h-[50vh] shadow-lg rounded-md overflow-hidden flex flex-col">
   <button
     on:click={() => goto(`/product/${product.id}`)}
     class="flex-1 relative"

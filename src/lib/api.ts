@@ -35,3 +35,12 @@ export async function fetchProductById(id: string) {
     console.log("Error:", error);
   }
 }
+
+export async function fetchHeroProducts(){
+  try {
+    const res=await fetch('https://fakestoreapi.com/products?sort=desc&limit=8')
+    return await res.json();
+  } catch (error) {
+    console.log("Error:", error);
+  }
+}
