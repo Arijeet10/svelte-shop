@@ -25,7 +25,7 @@
         <section class="w-full flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0">
             <div class="flex flex-col sm:flex-row items-center gap-4 text-sm sm:text-base">
                 <div>
-                    Copyright © 2023 3legant. All rights reserved
+                    Copyright © 2024 Arijeet. All rights reserved
                 </div>
                 <div>
                     Privacy Policy
