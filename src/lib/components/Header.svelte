@@ -7,6 +7,7 @@
 	import { goto } from '$app/navigation';
 	import { writable } from 'svelte/store';
 	import { debounce } from 'lodash-es';
+	import {toasts} from 'svelte-toasts';
 
 	let searchResults = writable<Product[]>([]);
 	let searchInput = writable('');
@@ -38,9 +39,11 @@
 				}
 				return titleWords.some((word) => word.toLowerCase().includes($searchInput.toLowerCase()));
 			});
+			toasts.success('Search results fetched')
 			searchResults.set(results);
 		} catch (error) {
 			console.log('Error in search:',error);
+			toasts.error('Error in searching products')
 		}
 	}, 300); // 300ms debounce delay
 
@@ -49,7 +52,8 @@
 			const categoryList: string[] = await fetchCategories();
 			categories.update((items) => [...items, ...categoryList]);
 		} catch (error) {
-			console.log('Failed to load products or categories:',error);
+			console.log('Failed to load product categories:',error);
+			toasts.error('Failed to load product categories')
 		}
 	});
 

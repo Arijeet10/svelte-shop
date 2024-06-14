@@ -3,7 +3,7 @@
   import "../app.css";
   import Footer from "$lib/components/Footer.svelte";
   import Header from "$lib/components/Header.svelte";
-  import { toasts, ToastContainer, FlatToast, BootstrapToast }  from "svelte-toasts";
+  import { toasts, ToastContainer, FlatToast }  from "svelte-toasts";
   import { browser } from "$app/environment";
 
 

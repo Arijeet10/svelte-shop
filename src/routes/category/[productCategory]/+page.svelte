@@ -6,6 +6,7 @@
 	import ProductFilter from "$lib/components/ProductFilter.svelte";
 	import { get } from 'svelte/store';
 	import {toasts} from 'svelte-toasts';
+  import Loading from "$lib/components/Loading.svelte";
 
 	let category: string;
 	let priceFilter: number = 999;
@@ -108,7 +109,7 @@
 </script>
 
 {#if loading}
-<div>Loading...</div>
+<Loading />
 {:else}
 <div class="px-8 py-4 flex flex-col gap-4">
 	<!--Header-->
