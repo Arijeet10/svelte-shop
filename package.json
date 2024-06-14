@@ -27,6 +27,7 @@
 		"lodash-es": "^4.17.21",
 		"lucide-svelte": "^0.395.0",
 		"prettier": "^3.3.2",
-		"prettier-plugin-svelte": "^3.2.4"
+		"prettier-plugin-svelte": "^3.2.4",
+		"svelte-toasts": "^1.1.2"
 	}
 }

@@ -5,6 +5,7 @@
 	import ProductCard from '$lib/components/ProductCard.svelte';
 	import ProductFilter from "$lib/components/ProductFilter.svelte";
 	import { get } from 'svelte/store';
+	import {toasts} from 'svelte-toasts';
 
 	let category: string;
 	let priceFilter: number = 999;
@@ -35,10 +36,12 @@
 			} else {
 				productList = await fetchProductsByCategory(category);
 			}
+			toasts.success("Products successfully fetched")
 			products.set(productList);
 			applyFilters(); // Apply filters after fetching products
 		} catch (error) {
-			console.log('Failed to load products or categories:',error);
+			console.log('Failed to load products by categories:',error);
+			toasts.error('Failed to load products by categories')
 		}finally{
 			loading=false;
 		}
