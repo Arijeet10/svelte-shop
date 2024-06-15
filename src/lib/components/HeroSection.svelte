@@ -52,12 +52,14 @@
 
 
 {#if loading}
-<Loading2 />
+<div class="loading2">
+	<Loading2 />
+</div>
 {:else}
 <div class="h-full w-full relative grid gap-2">
 	{#each heroProducts as product, i}
 		<div
-			class={`${activeProduct == i ? 'absolute' : 'hidden '} top-0 w-full h-full px-10 py-4 flex items-center justify-center bg-black text-[#FEFEFE]`}
+			class={`${activeProduct == i ? 'absolute active' : 'hidden '} hero-product top-0 w-full h-full px-10 py-4 flex items-center justify-center bg-black text-[#FEFEFE]`}
 		>
 			<div class="w-full h-full flex items-center justify-center gap-4">
 				<div class="relative w-60 h-60 ">
@@ -80,12 +82,15 @@
 	<button
 		on:click={() => handleLeftClick()}
 		class="h-20 absolute top-2/4 left-0 translate-y-[-50%] flex items-center justify-center bg-[#FEFEFE] hover:text-orange"
+		data-testid="chevron-left"
+
 	>
 		<ChevronLeft />
 	</button>
 	<button
 		on:click={() => handleRightClick()}
 		class="h-20 absolute top-2/4 right-0 translate-y-[-50%] flex items-center justify-center bg-[#FEFEFE] hover:text-orange"
+		data-testid="chevron-right"
 	>
 		<ChevronRight />
 	</button>

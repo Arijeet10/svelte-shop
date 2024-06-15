@@ -14,6 +14,4 @@ test.describe('Featured Products', () => {
     const featuredProducts = await page.$$('.featured-product');
     expect(featuredProducts.length).toBeGreaterThan(0);
   });
-
-
 });
