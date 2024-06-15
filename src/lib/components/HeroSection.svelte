@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { fetchHeroProducts } from '$lib/api';
-	import type { Product } from '../../stores/store';
+	import type { Product } from '$lib/stores/store';
 	import { toasts } from 'svelte-toasts';
 	import { ChevronLeft, ChevronRight } from 'lucide-svelte';
 	import { onMount } from 'svelte';

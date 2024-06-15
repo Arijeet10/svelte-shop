@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { cart } from '../../stores/store';
-	import type { CartProductsType } from '../../stores/store';
+	import { cart } from '$lib/stores/store';
+	import type { CartProductsType } from '$lib/stores/store';
 	import { X } from 'lucide-svelte';
 
 	export let product;

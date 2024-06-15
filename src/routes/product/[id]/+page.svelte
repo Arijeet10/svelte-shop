@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { fetchProductById } from '../../../lib/api';
-	import { cart, type CartProductsType, type Product } from '../../../stores/store';
+	import { fetchProductById } from '$lib/api';
+	import { cart, type CartProductsType, type Product } from '$lib/stores/store';
 	import { get } from 'svelte/store';
 	import { goto } from '$app/navigation';
 	import Loading from '$lib/components/Loading.svelte';

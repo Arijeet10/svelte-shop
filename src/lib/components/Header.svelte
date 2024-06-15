@@ -8,7 +8,7 @@
     X,
   } from "lucide-svelte";
   import { page } from "$app/stores";
-  import { categories, cart, type Product } from "../../stores/store";
+  import { categories, cart, type Product } from "$lib/stores/store";
   import { fetchCategories, fetchProducts } from "$lib/api";
   import { onMount } from "svelte";
   import { goto } from "$app/navigation";

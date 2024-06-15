@@ -1,6 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { cart, type Product } from "../../stores/store";
+  import { cart, type Product } from "$lib/stores/store";
 
   export let product;
 

@@ -5,7 +5,7 @@
     ShoppingCart,
     X,
   } from "lucide-svelte";
-  import { cart, categories } from "../../stores/store";
+  import { cart, categories } from "$lib/stores/store";
   import { goto } from "$app/navigation";
 
   export let closeSidebar;
