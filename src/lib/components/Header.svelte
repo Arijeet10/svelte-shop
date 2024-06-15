@@ -26,9 +26,9 @@
 
   $: url = $page.url.pathname;
 
-  const closeSidebar=()=>{
-	sidebar=false;
-  }
+  const closeSidebar = () => {
+    sidebar = false;
+  };
 
   const handleResetSearch = () => {
     searchInput.set("");
@@ -59,7 +59,7 @@
       console.log("Error in search:", error);
       toasts.error("Error in searching products");
     }
-  }, 300); // 300ms debounce delay
+  }, 300);
 
   onMount(async () => {
     try {
@@ -91,11 +91,12 @@
     <button on:click={() => (sidebar = true)} class="text-orange">
       <Menu />
     </button>
-
   </section>
   {#if sidebar}
-  <Sidebar {closeSidebar} />
-{/if}
+    <Sidebar {closeSidebar} />
+  {/if}
+  <!--/Mobile Screen Navigations-->
+
   <!--Navigations-->
   <section class="hidden sm:flex items-center">
     <nav class="flex items-center gap-4 font-medium text-[#6C7275]">
@@ -243,7 +244,4 @@
       class="absolute z-40 inset-0 bg-[rgba(0,0,0,0.7)]"
     />
   {/if}
-
 </header>
-
-

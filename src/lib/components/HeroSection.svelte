@@ -57,7 +57,7 @@
 <div class="h-full w-full relative grid gap-2">
 	{#each heroProducts as product, i}
 		<div
-			class={`${activeProduct == i ? 'absolute' : 'hidden'} top-0 w-full h-full px-10 py-4 flex items-center justify-center bg-black text-[#FEFEFE]`}
+			class={`${activeProduct == i ? 'absolute' : 'hidden '} top-0 w-full h-full px-10 py-4 flex items-center justify-center bg-black text-[#FEFEFE]`}
 		>
 			<div class="w-full h-full flex items-center justify-center gap-4">
 				<div class="relative w-60 h-60 ">

@@ -20,7 +20,7 @@
 </script>
 
 <nav
-  class="sm:hidden fixed w-[60vw] h-full z-50 p-2 top-0 right-0 bg-white text-grey"
+  class="sm:hidden fixed w-[60vw] h-full z-50 p-2 top-0 right-0 bg-white text-grey "
 >
   <div class="flex justify-end">
     <button on:click={closeSidebar} class="text-orange">
