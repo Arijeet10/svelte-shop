@@ -27,9 +27,9 @@ const showToast = () => {
 
 <Header />
 {#if browser}
-  <ToastContainer placement="top-right" let:data={data}>
-    <FlatToast {data} /> <!-- Provider template for toasts -->
-  </ToastContainer>
+<ToastContainer placement="top-right" let:data={data}>
+  <FlatToast {data} /> <!-- Provider template for toasts -->
+</ToastContainer>
 {/if}
 <slot />
 <Footer />

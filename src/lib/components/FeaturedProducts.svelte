@@ -29,15 +29,15 @@
 
 {#if loading}
   <div
-    class="flex flex-col sm:flex-row gap-4 sm:gap-0 max-w-screen overflow-hidden"
+    class=" flex flex-col sm:flex-row gap-4 sm:gap-0 max-w-screen overflow-hidden"
   >
-    <div class="flex-1 sm:min-h-[60vh]"><Loading2 /></div>
-    <div class="flex-1 sm:min-h-[60vh]"><Loading2 /></div>
+    <div class="loading flex-1 sm:min-h-[60vh]"><Loading2 /></div>
+    <div class="loading flex-1 sm:min-h-[60vh]"><Loading2 /></div>
   </div>
 {:else}
-  <div class="flex flex-col gap-4">
+  <div class=" flex flex-col gap-4">
     <div class="text-3xl font-bold text-black">Featured</div>
-    <div class="grid sm:grid-cols-2 gap-4">
+    <div class="featured-product grid sm:grid-cols-2 gap-4">
       {#each featuredProducts as product}
         <button
           on:click={() => goto(`/product/${product.id}`)}
