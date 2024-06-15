@@ -59,19 +59,20 @@
 </script>
 
 <div class="flex items-center text-xs sm:text-base">
-	<div class="flex-1 flex flex-col sm:flex-row items-center gap-2">
+	<div class="flex-1 w-full overflow-scroll relative flex flex-col sm:flex-row items-start sm:items-center gap-2">
 		<div class="flex-1 flex items-center justify-center">
 			<img src={product.product.image} alt="" class="w-10 h-10 sm:w-20 sm:h-20 object-contain" />
 		</div>
 		<div class="flex-1 flex flex-col">
 			<div class="">{product.product.title}</div>
-			<button on:click={() => handleRemoveProduct()} class="flex items-center font-medium text-grey hover:text-black">
+			<button on:click={() => handleRemoveProduct()} class="absolute sm:static top-0 right-0 sm:flex items-center font-medium text-grey hover:text-black">
 				<div><X /></div>
-				<div>Remove</div>
+				<div class="hidden sm:block">Remove</div>
 			</button>
 		</div>
+
 	</div>
-	<div class="flex-1 flex justify-center">
+	<div class="flex-1 w-full flex justify-center">
 		<div class="w-full sm:w-[10vw] flex items-center font-medium text-xs sm:text-base lg:text-lg">
 			<button
 				on:click={handleDecreaseCount}

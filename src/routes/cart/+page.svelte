@@ -13,7 +13,7 @@
 	}
   </script>
   
-  <main class="min-h-[100vh] px-8 py-4">
+  <main class="min-h-[100vh] px-4 sm:px-8 py-4">
 	<div
 	  class="py-4 font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center"
 	>
