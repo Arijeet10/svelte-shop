@@ -1,8 +1,11 @@
 import { test, expect } from '@playwright/test';
 
+const baseUrl=process.env.NODE==='production'? process.env.DEPLOYED_URL as string : 'http://localhost:5173'
+
+
 test.describe('Hero Products', () => {
   test('Displays loading state initially', async ({ page }) => {
-    await page.goto('/');
+    await page.goto(baseUrl);
     
     // verify loading component
     const loadingElement = await page.waitForSelector('.loading2');
@@ -10,7 +13,7 @@ test.describe('Hero Products', () => {
   });
 
   test('Fetches and displays hero products', async ({ page }) => {
-    await page.goto('/');
+    await page.goto(baseUrl);
     
     // wait for the loading to finish
     await page.waitForSelector('.loading2', { state: 'detached' });
@@ -21,7 +24,7 @@ test.describe('Hero Products', () => {
   });
 
   test('Navigates through hero products using left and right buttons', async ({ page }) => {
-    await page.goto('/');
+    await page.goto(baseUrl);
     
     // Wait for the loading to finish
     await page.waitForSelector('.loading2', { state: 'detached' });

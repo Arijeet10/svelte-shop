@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test';
 
+const baseUrl=process.env.NODE==='production'? process.env.DEPLOYED_URL as string : 'http://localhost:5173'
+
+
 test('Product Page', async ({ page }) => {
   // Mock product data
   const product = {
@@ -16,7 +19,7 @@ test('Product Page', async ({ page }) => {
   };
 
   // Navigate to the product page with product id
-  await page.goto(`/product/${product.id}`); // Adjust URL and route pattern as per your application
+  await page.goto(`${baseUrl}/product/${product.id}`); // Adjust URL and route pattern as per your application
 
   // Wait for the product details to load
   await page.waitForSelector('div.text-2xl.font-bold'); // Wait for the product title

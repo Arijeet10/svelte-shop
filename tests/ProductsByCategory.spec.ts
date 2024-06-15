@@ -1,9 +1,10 @@
 import { test, expect } from '@playwright/test';
 
+const baseUrl=process.env.NODE==='production'? process.env.DEPLOYED_URL as string : 'http://localhost:5173'
 
 test.describe('Products By Category Page', () => {
   test('Page should load initially with loading state', async ({ page }) => {
-    await page.goto(`/category/all`);
+    await page.goto(`${baseUrl}/category/all`);
     await page.waitForSelector('.loading'); 
     const loadingElement = await page.isVisible('.loading');
     expect(loadingElement).toBeTruthy();
@@ -11,7 +12,7 @@ test.describe('Products By Category Page', () => {
 
   //display products
   test('Page should display products after successful fetch', async ({ page }) => {
-    await page.goto(`/category/all`);
+    await page.goto(`${baseUrl}/category/all`);
     await page.waitForSelector('.productcard'); 
     const productCards = await page.$$('.productcard');
     expect(productCards.length).toBeGreaterThan(0);
@@ -19,7 +20,7 @@ test.describe('Products By Category Page', () => {
 
   //filter product
   test('Page should correctly filter products based on price', async ({ page }) => {
-    await page.goto(`/category/all`);
+    await page.goto(`${baseUrl}/category/all`);
 
     // Change price filter
     await page.selectOption('select[name="price-filter"]', { label: 'Max $200' });
@@ -45,7 +46,7 @@ test.describe('Products By Category Page', () => {
   });
 
   test('Page should navigate through pagination correctly', async ({ page }) => {
-    await page.goto(`/category/all`);
+    await page.goto(`${baseUrl}/category/all`);
 
     // next page button click
     await page.click('button[data-testid="next-page"]');

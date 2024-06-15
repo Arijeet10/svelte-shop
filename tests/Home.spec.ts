@@ -1,10 +1,13 @@
 import { test, expect } from '@playwright/test';
 
+const baseUrl=process.env.NODE==='production'? process.env.DEPLOYED_URL as string : 'http://localhost:5173'
+
+
 test.describe('Home Page', () => {
 
   test.beforeEach(async ({ page }) => {
     // going to homepage before each test
-    await page.goto('/');
+    await page.goto(baseUrl);
   });
 
   test('should render HeroSection component', async ({ page }) => {

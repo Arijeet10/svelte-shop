@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test';
 
+const baseUrl=process.env.NODE==='production'? process.env.DEPLOYED_URL as string : 'http://localhost:5173'
+
+
 test.describe('Product Card', () => {
   test('Add product to cart', async ({ page }) => {
     // mock product data for testing
@@ -11,7 +14,7 @@ test.describe('Product Card', () => {
     };
 
     // go to product detail page
-    await page.goto(`/category/all`);
+    await page.goto(`${baseUrl}/category/all`);
 
     // check for product image
     await page.waitForSelector('img');

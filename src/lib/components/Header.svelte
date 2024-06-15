@@ -101,7 +101,7 @@
           type="button"
           on:click={() => (dropdown = !dropdown)}
           on:keydown={handleKeydown}
-          class={`p-2 flex items-center gap-1 hover:text-[#000000] ${dropdown ? "text-[#000000]" : ""}`}
+          class={` p-2 flex items-center gap-1 hover:text-[#000000] ${dropdown ? "text-[#000000]" : ""}`}
         >
           <div>Categories</div>
           <div>
@@ -114,7 +114,7 @@
         </button>
         {#if dropdown}
           <div
-            class="w-[30vw] absolute z-50 top-full rounded-b-md shadow-md bg-[#FEFEFE]"
+            class={` w-[30vw] ${dropdown?'absolute':'hidden'} z-50 top-full rounded-b-md shadow-md bg-[#FEFEFE] `}
           >
             {#each $categories as category}
               <button
