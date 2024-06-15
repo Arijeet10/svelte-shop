@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-const baseUrl=process.env.NODE==='production'? process.env.DEPLOYED_URL as string : 'http://localhost:5173'
-
+// const baseUrl=process.env.NODE==='production'? process.env.DEPLOYED_URL as string : 'http://localhost:5173'
+const baseUrl="https://svelte-shop-gilt.vercel.app"
 
 test('Product Page', async ({ page }) => {
   // Mock product data
