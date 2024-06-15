@@ -29,7 +29,7 @@
     <img
       src={product.image}
       alt={product.title}
-      class="absolute inset-0 w-full h-full object-contain"
+      class=" absolute inset-0 w-full h-full object-contain"
     />
   </button>
   <div class=" flex flex-col items-start">
@@ -42,12 +42,13 @@
       <button
         on:click={() => goto(`/cart`)}
         class="px-4 py-2 mt-2 rounded-md font-medium bg-black hover:bg-orange2 text-white transition-colors duration-300 ease-in-out"
+        data-testid="go-to-cart"
         >Go to Cart</button
       >
     {:else}
       <button
         class="px-4 py-2 mt-2 rounded-md font-medium bg-orange hover:bg-orange2 text-white transition-colors duration-300 ease-in-out"
-        on:click={() => addToCart(product)}>Add to Cart</button
+        on:click={() => addToCart(product)} data-testid="add-to-cart">Add to Cart</button
       >
     {/if}
   </div>
