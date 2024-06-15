@@ -41,7 +41,7 @@
     {#if $cart.find((item) => item.product.id == product.id)}
       <button
         on:click={() => goto(`/cart`)}
-        class="px-4 py-2 mt-2 rounded-md font-medium bg-orange hover:bg-orange2 text-white transition-colors duration-300 ease-in-out"
+        class="px-4 py-2 mt-2 rounded-md font-medium bg-black hover:bg-orange2 text-white transition-colors duration-300 ease-in-out"
         >Go to Cart</button
       >
     {:else}
