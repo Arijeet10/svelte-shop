@@ -59,7 +59,7 @@
 </script>
 
 <div class="flex items-center text-xs sm:text-base">
-	<div class="flex-1 w-full overflow-scroll relative flex flex-col sm:flex-row items-start sm:items-center gap-2">
+	<div class="flex-1 w-full  relative flex flex-col sm:flex-row items-start sm:items-center gap-2 overflow-scroll hide-default-scrollbar">
 		<div class="flex-1 flex items-center justify-center">
 			<img src={product.product.image} alt="" class="w-10 h-10 sm:w-20 sm:h-20 object-contain" />
 		</div>
