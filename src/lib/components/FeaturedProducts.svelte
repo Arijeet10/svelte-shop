@@ -41,7 +41,7 @@
       {#each featuredProducts as product}
         <button
           on:click={() => goto(`/product/${product.id}`)}
-          class="relative w-full h-[60vh] border shadown-md"
+          class="relative w-full h-[60vh]  shadown-md"
         >
           <img
             src={product.image}

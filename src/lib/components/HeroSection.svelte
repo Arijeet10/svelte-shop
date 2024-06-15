@@ -65,11 +65,11 @@
 					<div class="absolute inset-0 bg-gradient-to-b from-transparent to-black" />
 				</div>
 				<div class=" flex flex-col gap-4">
-					<div class="text-2xl font-medium">{product.title}</div>
+					<div class="text-lg sm:text-2xl font-medium">{product.title}</div>
 					<div>
 						<button
 							on:click={() => goto(`product/${product.id}`)}
-							class="p-2 rounded-md font-medium bg-orange hover:bg-orange2  transition-colors duration-300 ease-in-out">Shop Now</button
+							class="p-2 rounded-md text-xs sm:text-base font-medium bg-orange hover:bg-orange2  transition-colors duration-300 ease-in-out">Shop Now</button
 						>
 					</div>
 				</div>
