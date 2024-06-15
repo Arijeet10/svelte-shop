@@ -86,16 +86,7 @@
   </section>
   <!--/Logo-->
 
-  <!--Mobile Screen Navigations-->
-  <section class="sm:hidden">
-    <button on:click={() => (sidebar = true)} class="text-orange">
-      <Menu />
-    </button>
-  </section>
-  {#if sidebar}
-    <Sidebar {closeSidebar} />
-  {/if}
-  <!--/Mobile Screen Navigations-->
+
 
   <!--Navigations-->
   <section class="hidden sm:flex items-center">
@@ -163,10 +154,10 @@
   </section>
   <!--/Navigations-->
 
-  <section class="hidden sm:flex items-center gap-4">
+  <section class="flex items-center gap-4">
     <!--Product Search-->
     <div
-      class={` ${isSearching ? "absolute w-[60vw] top-2 left-2/4 translate-x-[-50%] z-50 bg-[#FEFEFE]" : "relative"} transition-all duration-300 ease-in-out`}
+      class={` ${isSearching ? "absolute w-[80vw] sm:w-[60vw] top-2 left-2/4 translate-x-[-50%] z-50 bg-[#FEFEFE]" : "relative w-[30vw] sm:w-auto"} transition-all duration-300 ease-in-out`}
     >
       <div
         class={`p-2 flex items-center ${isSearching ? "border" : "lg:border"}  rounded-md`}
@@ -184,7 +175,7 @@
           </button>
         {:else}
           <button on:click={() => (isSearching = true)}>
-            <Search />
+            <Search class="w-5 h-5 sm:w-auto sm:h-auto" />
           </button>
         {/if}
       </div>
@@ -218,7 +209,7 @@
     <!--/Product Search-->
 
     <!--Cart-->
-    <nav class="flex items-center gap-4 font-medium text-[#6C7275]">
+    <nav class="hidden sm:flex items-center gap-4 font-medium text-[#6C7275]">
       <a
         href="/cart"
         class={`p-2 flex items-center gap-1 ${url == "/cart" ? "text-[#000000]" : ""} hover:text-[#000000]`}
@@ -244,4 +235,14 @@
       class="absolute z-40 inset-0 bg-[rgba(0,0,0,0.7)]"
     />
   {/if}
+    <!--Mobile Screen Navigations-->
+    <section class="sm:hidden flex items-center justify-center">
+      <button on:click={() => (sidebar = true)} class="text-orange">
+        <Menu />
+      </button>
+    </section>
+    {#if sidebar}
+      <Sidebar {closeSidebar} />
+    {/if}
+    <!--/Mobile Screen Navigations-->
 </header>
