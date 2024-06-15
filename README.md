@@ -13,6 +13,7 @@ Welcome to the Svelte Shop App, a modern e-commerce application built using Svel
   - [Project Structure](#project-structure)
   - [Available Scripts](#available-scripts)
   - [Tailwind CSS Configuration](#tailwind-css-configuration)
+  - [GitHub Actions CI/CD with Playwright Testing](#github-actions-cicd-with-playwright-testing)
 - [Deployment](#deployment)
 
 ## Features
@@ -109,6 +110,121 @@ export default {
   plugins: [],
 }
 ```
+
+## GitHub Actions CI/CD with Playwright Testing
+
+We use GitHub Actions to automate our CI/CD pipeline, ensuring code quality and seamless deployment of the Svelte Shop App.
+
+### Setup
+
+1. **Preview File**: Create a preview workflow file (e.g., `.github/workflows/preview.yaml`) in your repository with the following content:
+
+```bash
+
+name: Vercel Preview Deployment
+
+env:
+    VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+    VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+
+    Test:
+        runs-on: ubuntu-latest
+        steps:
+
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-node@v4
+              with:
+                node-version: 18
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Install Playwright Browsers
+              run: npx playwright install --with-deps
+
+            - name: Run Playwright Tests
+              run: npx playwright test
+
+            - uses: actions/upload-artifact@v4
+              if: always()
+              with:
+                name: playwright-report
+                path: playwright-report/
+                retention-days: 30
+
+    Deploy-Preview:
+        needs: [Test]
+        runs-on: ubuntu-latest
+        steps:
+
+            - uses: actions/checkout@v4
+
+            - name: Install Vercel CLI
+              run: npm install --global vercel
+
+            - name: Pull Vercel Environment Information
+              run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
+            - name: Build Project Artifacts
+              run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
+            - name: Deploy Project Artifacts
+              run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+
+```
+2. Playwright Testing: Ensure your package.json includes scripts for Playwright testing (test:playwright). Adjust npm run test:playwright in the workflow file based on your actual setup.
+3. Secrets: Set up GitHub repository secrets (VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID) for deployment to Vercel. Update your workflow file to reference these secrets securely.
+4. Customization: Customize the workflow file to fit your specific needs, such as additional testing steps, notifications, or environment configurations.
+5. I have also added Production workflow file for production deployment (e.g., `.github/workflows/production.yaml`) in the repository with the following content:
+
+```bash
+name: Vercel Production Deployment
+
+env:
+    VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+    VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    needs: [Test]
+    Deploy-Production:
+        runs-on: ubuntu-latest
+        steps:
+
+            - uses: actions/checkout@v4
+
+            - name: Install Vercel CLI
+              run: npm install --global vercel
+
+            - name: Pull Vercel Environment Information
+              run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+            - name: Build Project Artifacts
+              run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+            - name: Deploy Project Artifacts
+              run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+```
+
+This GitHub Actions setup automatically runs Playwright tests on every push to the main branch and deploys the app to Vercel upon successful build and tests.
+
+For more details on configuring Playwright and GitHub Actions, refer to their respective documentation:
+
+- [Playwright](https://playwright.dev/docs/intro)
+- [GitHub Actions](https://docs.github.com/en/actions)
+
 
 ## Deployment
 
