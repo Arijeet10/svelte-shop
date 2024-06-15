@@ -20,7 +20,7 @@
 	  Cart
 	</div>
 	{#if $cart.length == 0}
-	  <div class="mt-20 font-semibold text-3xl">Cart is Empty</div>
+	  <div class="mt-20 font-semibold text-3xl text-center">Cart is Empty</div>
 	{:else}
 	  <div class="flex flex-col gap-4 text-xs sm:text-base">
 		<div class="flex items-center font-semibold">

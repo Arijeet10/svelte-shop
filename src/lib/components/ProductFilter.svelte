@@ -7,8 +7,8 @@
 <div class="flex items-center justify-between text-xs sm:text-base">
 	<div class="flex items-center gap-4">
 		<div class="flex-1">
-			<select on:change={handlePriceFilter} >
-				<option value="" class="text-grey">Price</option>
+			<select on:change={handlePriceFilter} class="font-medium" name="price-filter">
+				<option value="" class="text-grey ">Price</option>
 				<option value="100" >Max $100</option>
 				<option value="200" >Max $200</option>
 				<option value="300" >Max $300</option>
@@ -22,8 +22,8 @@
 			</select>
 		</div>
 		<div class="flex-1">
-			<select on:change={handleRatingFilter}>
-				<option value="" class="text-grey">Ratings</option>
+			<select on:change={handleRatingFilter} class="font-medium">
+				<option value="" class="text-grey ">Ratings</option>
 				<option value="4">4 ⭐ & above</option>
 				<option value="3">3 ⭐ & above</option>
 				<option value="2">2 ⭐ & above</option>
@@ -32,8 +32,8 @@
 		</div>
 	</div>
 	<div class="flex items-center">
-		<select on:change={handleSort}>
-			<option value="" class="text-grey">Sort</option>
+		<select on:change={handleSort} class="font-medium">
+			<option value="" class="text-grey ">Sort</option>
 			<option value="price">By Price</option>
 			<option value="reviews">By Popularity</option>
 		</select>

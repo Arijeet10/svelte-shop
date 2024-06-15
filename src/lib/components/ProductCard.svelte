@@ -37,7 +37,7 @@
       on:click={() => goto(`/product/${product.id}`)}
       class="text-lg font-bold line-clamp-2">{product.title}</button
     >
-    <p class="text-grey font-medium">${product.price}</p>
+    <p class="text-grey font-medium product-price">${product.price}</p>
     {#if $cart.find((item) => item.product.id == product.id)}
       <button
         on:click={() => goto(`/cart`)}

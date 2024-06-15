@@ -157,7 +157,7 @@
   <section class="flex items-center gap-4">
     <!--Product Search-->
     <div
-      class={` ${isSearching ? "absolute w-[80vw] sm:w-[60vw] top-2 left-2/4 translate-x-[-50%] z-50 bg-[#FEFEFE]" : "relative w-[30vw] sm:w-auto"} transition-all duration-300 ease-in-out`}
+      class={` ${isSearching ? "absolute w-[80vw] sm:w-[60vw] top-2 left-2/4 translate-x-[-50%] z-50 bg-[#FEFEFE]" : "relative w-[30vw] sm:w-auto"} rounded-t-md transition-all duration-300 ease-in-out`}
     >
       <div
         class={`p-2 flex items-center ${isSearching ? "border" : "lg:border"}  rounded-md`}
