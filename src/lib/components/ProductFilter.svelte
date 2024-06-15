@@ -4,7 +4,7 @@
 	export let handleSort: (event: Event) => void;
 </script>
 
-<div class="flex items-center justify-between">
+<div class="flex items-center justify-between text-xs sm:text-base">
 	<div class="flex items-center gap-4">
 		<div class="flex-1">
 			<select on:change={handlePriceFilter} >

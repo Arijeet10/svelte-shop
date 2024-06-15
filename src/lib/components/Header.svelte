@@ -79,7 +79,7 @@
   }
 </script>
 
-<header class="px-8 py-2 flex items-center justify-between">
+<header class="px-4 sm:px-8 py-2 flex items-center justify-between">
   <!--Logo-->
   <section class="text-2xl uppercase font-bold text-orange">
     Svelte <span class="text-black">Shop</span>

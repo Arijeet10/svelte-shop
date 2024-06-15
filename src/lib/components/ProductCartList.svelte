@@ -90,6 +90,6 @@
 	</div>
 	<div class="flex-1 w-full text-center">${product.product.price}</div>
 	<div class="flex-1 w-full text-center font-semibold">
-		${product.product.price * product.productCount}
+		${(product.product.price * product.productCount).toFixed(2)}
 	</div>
 </div>

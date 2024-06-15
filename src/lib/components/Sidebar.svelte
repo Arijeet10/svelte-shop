@@ -28,7 +28,7 @@
     </button>
   </div>
   <section
-    class="pl-10 flex flex-col items-start justify-between gap-8 text-lg font-medium"
+    class="pl-10 pt-20 flex flex-col items-start justify-between gap-8 text-lg font-medium"
   >
     <button
       on:click={() => {

@@ -123,7 +123,7 @@
   {#if loading}
 	<Loading />
   {:else}
-	<div class="px-8 py-4 flex flex-col gap-4">
+	<div class="px-4 sm:px-8 py-4 flex flex-col gap-4">
 	  <!--Header-->
 	  <div class="py-4 font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center">
 		{category == 'all' ? 'All Products' : category.split('').map((item, i) => (i == 0 ? item.toUpperCase() : item)).join('')}
@@ -146,8 +146,8 @@
 	  {#if filteredProducts.length > itemsPerPage}
 		<div class="my-6 flex items-center justify-end">
 		  <div class="flex items-center gap-4">
-			<button on:click={handlePreviousPage} class="w-[10vw] px-2 py-2 font-medium rounded-md bg-black hover:bg-orange2 text-[#FEFEFE] transition-colors duration-300 ease-in-out" disabled={currentPage === 1}>Previous</button>
-			<button on:click={handleNextPage} class="w-[10vw] px-2 py-2 font-medium rounded-md bg-black hover:bg-orange2 text-[#FEFEFE] transition-colors duration-300 ease-in-out" disabled={currentPage >= Math.ceil(filteredProducts.length / itemsPerPage)}>Next</button>
+			<button on:click={handlePreviousPage} class="w-[30vw] sm:w-[12vw] px-2 py-2 font-medium rounded-md bg-black hover:bg-orange2 text-[#FEFEFE] transition-colors duration-300 ease-in-out" disabled={currentPage === 1}>Previous</button>
+			<button on:click={handleNextPage} class="w-[30vw] sm:w-[12vw] px-2 py-2 font-medium rounded-md bg-black hover:bg-orange2 text-[#FEFEFE] transition-colors duration-300 ease-in-out" disabled={currentPage >= Math.ceil(filteredProducts.length / itemsPerPage)}>Next</button>
 		  </div>
 		</div>
 	  {/if}
