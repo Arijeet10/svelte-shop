@@ -107,11 +107,11 @@
 	<div class="px-4 sm:px-8 py-8 min-h-[100vh]">
 		{#if product}
 			<div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-2 md:gap-8 lg:gap-10">
-				<div class="sm:min-w-[40vw] md:min-w-[50vw] lg:min-w-[60vw] p-2 shadow-md rounded-md">
+				<div class="sm:min-w-[40vw] md:min-w-[50vw] lg:min-w-[60vw]  p-2 shadow-md rounded-md">
 					<img
 						src={product.image}
 						alt={product.title}
-						class="w-full h-full object-contain rounded-md"
+						class="w-full h-full max-h-[80vh] object-contain rounded-md"
 					/>
 				</div>
 
