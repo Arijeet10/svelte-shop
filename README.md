@@ -198,7 +198,6 @@ on:
             - main
 
 jobs:
-    needs: [Test]
     Deploy-Production:
         runs-on: ubuntu-latest
         steps:
