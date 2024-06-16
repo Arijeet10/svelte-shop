@@ -37,29 +37,27 @@
   };
 
   const handleSearch = debounce(async () => {
-    isSearching = $searchInput.trim() !== "";
-    if (!isSearching) {
-      searchResults.set([]);
-      return;
-    }
+  isSearching = $searchInput.trim() !== "";
+  if (!isSearching) {
+    searchResults.set([]);
+    return;
+  }
 
-    try {
-      const productList: Product[] = await fetchProducts();
-      const results = productList.filter((item) => {
-        const titleWords = item.title.split(" ");
-        if (titleWords.length === 1) {
-          return item.title.toLowerCase().includes($searchInput.toLowerCase());
-        }
-        return titleWords.some((word) =>
-          word.toLowerCase().includes($searchInput.toLowerCase())
-        );
-      });
-      searchResults.set(results);
-    } catch (error) {
-      console.log("Error in search:", error);
-      toasts.error("Error in searching products");
-    }
-  }, 300);
+  try {
+    const productList: Product[] = await fetchProducts();
+    const results = productList.filter((item) => {
+      const searchInputLower = $searchInput.toLowerCase();
+      const titleMatches = item.title.toLowerCase().includes(searchInputLower);
+      const descriptionMatches = item.description.toLowerCase().includes(searchInputLower);
+      return titleMatches || descriptionMatches;
+    });
+    searchResults.set(results);
+  } catch (error) {
+    console.log("Error in search:", error);
+    toasts.error("Error in searching products");
+  }
+}, 300);
+
 
   onMount(async () => {
     try {
